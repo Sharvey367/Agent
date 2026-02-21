@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1040"/>
+      <stop offset="100%" style="stop-color:#06060f"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="102" fill="url(#bg)"/>
+  <!-- Moon crescent -->
+  <circle cx="180" cy="190" r="80" fill="#a78bfa" opacity="0.9"/>
+  <circle cx="207" cy="170" r="70" fill="#110d24"/>
+  <!-- Stars -->
+  <circle cx="320" cy="128" r="8" fill="white" opacity="0.9"/>
+  <circle cx="395" cy="96" r="5" fill="white" opacity="0.7"/>
+  <circle cx="373" cy="180" r="6.5" fill="white" opacity="0.8"/>
+  <circle cx="288" cy="85" r="4" fill="white" opacity="0.6"/>
+  <circle cx="427" cy="150" r="4.5" fill="white" opacity="0.5"/>
+  <circle cx="350" cy="60" r="3" fill="white" opacity="0.4"/>
+  <circle cx="440" cy="110" r="3.5" fill="white" opacity="0.55"/>
+  <!-- Sound waves -->
+  <path d="M160 320 Q256 288 352 320" stroke="#7c5cbf" stroke-width="6" fill="none" opacity="0.6"/>
+  <path d="M130 362 Q256 322 382 362" stroke="#7c5cbf" stroke-width="6" fill="none" opacity="0.4"/>
+  <path d="M100 404 Q256 354 412 404" stroke="#7c5cbf" stroke-width="6" fill="none" opacity="0.25"/>
+</svg>
