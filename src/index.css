@@ -1,0 +1,595 @@
+/* ===== SomnoMix — Dark / Night Theme ===== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-deep: #06060f;
+  --bg-surface: rgba(15, 15, 35, 0.85);
+  --bg-card: rgba(25, 20, 55, 0.7);
+  --bg-card-hover: rgba(35, 30, 70, 0.8);
+  --accent: #7c5cbf;
+  --accent-glow: rgba(124, 92, 191, 0.3);
+  --accent-light: #a78bfa;
+  --text: #e0dce8;
+  --text-dim: #8b85a0;
+  --text-muted: #5a5472;
+  --border: rgba(124, 92, 191, 0.2);
+  --selected-bg: rgba(124, 92, 191, 0.25);
+  --selected-border: rgba(124, 92, 191, 0.6);
+  --danger: #e05577;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg-deep);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100%;
+}
+
+/* ===== App Layout ===== */
+
+.app {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== Setup Screen ===== */
+
+.setup-screen {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  padding: 24px 16px 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.app-header {
+  text-align: center;
+  padding: 32px 0 16px;
+}
+
+.app-header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-light), #c084fc, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.tagline {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+
+/* ===== Section Cards ===== */
+
+.selector-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.selector-section h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+
+.setup-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== Hypnosis Video List ===== */
+
+.video-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.artist-group {
+  margin-bottom: 8px;
+}
+
+.artist-name {
+  font-size: 0.75rem;
+  color: var(--accent-light);
+  font-weight: 600;
+  margin-bottom: 4px;
+  padding-left: 4px;
+}
+
+.video-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.video-option:hover {
+  background: var(--bg-card-hover);
+}
+
+.video-option.selected {
+  background: var(--selected-bg);
+  border-color: var(--selected-border);
+}
+
+.video-title {
+  flex: 1;
+  margin-right: 8px;
+}
+
+.video-duration {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ===== Custom URL ===== */
+
+.custom-url-toggle {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  background: transparent;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.custom-url-toggle:hover,
+.custom-url-toggle.active {
+  border-color: var(--accent);
+  color: var(--accent-light);
+}
+
+.custom-url-input {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.custom-url-input input {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.custom-url-input input:focus {
+  border-color: var(--accent);
+}
+
+.custom-url-input button {
+  padding: 8px 16px;
+  background: var(--accent);
+  border: none;
+  border-radius: var(--radius-sm);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.custom-url-input button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ===== Ambient Selector ===== */
+
+.ambient-options {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ambient-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.ambient-option:hover {
+  background: var(--bg-card-hover);
+}
+
+.ambient-option.selected {
+  background: var(--selected-bg);
+  border-color: var(--selected-border);
+}
+
+.ambient-icon {
+  font-size: 1.2rem;
+  width: 28px;
+  text-align: center;
+}
+
+.ambient-label {
+  flex: 1;
+}
+
+.ambient-badge {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+}
+
+.ambient-duration {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* ===== Volume Slider ===== */
+
+.volume-slider {
+  margin-bottom: 12px;
+}
+
+.volume-slider:last-child {
+  margin-bottom: 0;
+}
+
+.volume-slider label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+}
+
+.volume-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text);
+}
+
+.volume-icon {
+  font-size: 1rem;
+}
+
+.volume-value {
+  color: var(--text-dim);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8rem;
+}
+
+.volume-slider input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  outline: none;
+}
+
+.volume-slider input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.volume-slider input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ===== Timer Pills ===== */
+
+.timer-group {
+  margin-bottom: 12px;
+}
+
+.timer-group:last-child {
+  margin-bottom: 0;
+}
+
+.timer-label {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.timer-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pill {
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pill:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.pill.selected {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  font-weight: 600;
+}
+
+/* ===== Start Button ===== */
+
+.btn-start {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 448px;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--accent), #6d28d9);
+  border: none;
+  border-radius: var(--radius);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 4px 24px rgba(124, 92, 191, 0.4);
+  transition: all 0.3s;
+  letter-spacing: 0.5px;
+}
+
+.btn-start:hover:not(:disabled) {
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 32px rgba(124, 92, 191, 0.6);
+}
+
+.btn-start:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.hint {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 8px;
+  padding-bottom: 40px;
+}
+
+/* ===== Session Player ===== */
+
+.session-player {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 32px;
+}
+
+.session-status {
+  text-align: center;
+}
+
+.session-timer {
+  font-size: 4rem;
+  font-weight: 200;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  letter-spacing: 2px;
+}
+
+.session-label {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 4px;
+}
+
+.session-controls {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.session-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.btn-black-screen {
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-black-screen:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.btn-stop {
+  padding: 14px;
+  background: transparent;
+  border: 1px solid var(--danger);
+  border-radius: var(--radius);
+  color: var(--danger);
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-stop:hover {
+  background: rgba(224, 85, 119, 0.1);
+}
+
+/* ===== Black Screen Mode ===== */
+
+.black-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.black-screen-hint {
+  color: rgba(255, 255, 255, 0.08);
+  font-size: 0.8rem;
+  animation: pulse-hint 4s ease-in-out infinite;
+}
+
+@keyframes pulse-hint {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 400px) {
+  .setup-screen {
+    padding: 16px 12px 120px;
+  }
+
+  .session-timer {
+    font-size: 3rem;
+  }
+
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .pill {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .setup-screen {
+    padding-top: 48px;
+  }
+
+  .app-header h1 {
+    font-size: 2.8rem;
+  }
+}
+
+/* ===== Scrollbar ===== */
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* ===== Selection ===== */
+
+::selection {
+  background: var(--accent);
+  color: white;
+}
